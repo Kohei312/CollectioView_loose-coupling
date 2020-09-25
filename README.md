@@ -1,0 +1,1 @@
+# CollectioView_loose-coupling
