@@ -8,9 +8,20 @@
 import Foundation
 import UIKit
 
-class CollectionViewDataSource:NSObject,UICollectionViewDelegate,UICollectionViewDataSource{
 
-   
+
+
+class CollectionViewDataSource:NSObject,UICollectionViewDelegate,UICollectionViewDataSource,ViewModelInputPort{
+
+    
+    private var collectionViewModel:ViewModelInputPort?
+    
+    // ViewModelへ処理を渡す
+    func callUpdateFromView(url: URL) {
+        self.collectionViewModel?.callUpdateFromView(url: url)
+    }
+
+    
     
     // 2
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -26,8 +37,11 @@ class CollectionViewDataSource:NSObject,UICollectionViewDelegate,UICollectionVie
         // cellは、Modelと結びつく形で管理
         let cell  = collectionView.dequeueReusableCell(CollectionViewCell.self,indexPath: indexPath)
 
-
-
+        // データ取得処理を呼び出す
+        self.callUpdateFromView(url: <#T##URL#>)
+        
+        // 返却されたデータをCellプロパティに格納する
+        
         return cell
     }
     

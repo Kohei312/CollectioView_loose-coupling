@@ -11,6 +11,8 @@ class CollectionViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let collectionViewDataSource = CollectionViewDataSource(input: ViewModelInputPort)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
