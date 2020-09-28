@@ -7,11 +7,15 @@
 
 import UIKit
 
+protocol CollectionViewCellProtocol{
+    func didUpdateCellStatus()
+}
+
 class CollectionViewCell: UICollectionViewCell,ViewModelOutputPort,ModelInputPort {
 
     private var collectionViewModel:CollectionViewModel?
     
-    
+    var delegate: CollectionViewCellProtocol?
     
     // ViewModelへ処理を渡す
     func startFetchData(url: URL) {
@@ -21,7 +25,10 @@ class CollectionViewCell: UICollectionViewCell,ViewModelOutputPort,ModelInputPor
     
     // ViewModelからデータを受け取る
     func viewModelDidUpdate(image: UIImage) {
-        <#code#>
+        // イメージデータをUIへセット
+        // self.imageView.image = image みたいな
+        // UI更新をコール
+        delegate?.didUpdateCellStatus()
     }
     
 }
