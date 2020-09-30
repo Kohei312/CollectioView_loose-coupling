@@ -10,21 +10,28 @@ import UIKit
 
 protocol CollectionViewControllerBuilderProtocol{
     
-    associatedtype viewController: UIViewController
-    static func build() -> viewController
-    
+    static func build()
 }
 
 struct CollectionViewControllerBuilder:CollectionViewControllerBuilderProtocol{
-    typealias viewController = CollectionViewController
+
     
-    static func build() -> CollectionViewController {
-        // Viewに関する部品
+    static func build()-> CollectionViewController{
+        // VC
         let viewController = CollectionViewController()
-        let dataSource = CollectionViewDataSource()
+//            viewController.collectionView.register(CollectionViewCell.self)
+//
+        // View
+        let dataSource = CollectionViewDataSource(input: <#ViewModelInputPort#>)
+        // repository
         let repository = APIRepository(output: <#T##APIRepositoryOutput#>)
+        
+        // presenter
         let presenter = CollectionViewModel(input: <#T##ModelInputPort#>, output: <#T##ViewModelOutputPort#>)
+        // usecase
         let usecase = CollectionModel(output: <#T##ModelOutputPort#>, input: <#T##APIRepositoryInput#>)
+        
+        return viewController
     }
     
     

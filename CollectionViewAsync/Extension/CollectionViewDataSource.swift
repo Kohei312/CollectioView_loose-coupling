@@ -9,18 +9,13 @@ import Foundation
 import UIKit
 
 
-
-
-class CollectionViewDataSource:NSObject,UICollectionViewDelegate,UICollectionViewDataSource,ViewModelInputPort{
+class CollectionViewDataSource:NSObject,UICollectionViewDelegate,UICollectionViewDataSource{
 
     
-    private var collectionViewModel:ViewModelInputPort?
     
-    // ViewModelへ処理を渡す
-    func callUpdateFromView(url: URL) {
-        self.collectionViewModel?.callUpdateFromView(url: url)
-    }
-
+    
+    
+    
     
     
     // 2

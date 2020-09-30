@@ -8,24 +8,29 @@
 import UIKit
 
 
-class CollectionViewController: UIViewController,CollectionViewControllerProtocol{
+class CollectionViewController: UIViewController,ViewModelInputPort{
     
-    // UI更新をコール
-    func didUpdateCellStatus(){
-        self.collectionView.reloadData()
-    }
     
-
     @IBOutlet weak var collectionView: UICollectionView!
     
+//    let builder = CollectionViewControllerBuilder()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // ViewModelへVCで初期化したものを注入
-        
+        CollectionViewControllerBuilder.build()
         // CollectionViewCellを登録
-        collectionView.register(CollectionViewCell.self)
         collectionView.cell.delegate = self
+    }
+    
+    func callUpdateFromView(url:URL){
+        
+    }
+    
+    // UI更新をコール
+    func didUpdateCellStatus(){
+        self.collectionView.reloadData()
     }
 
 }

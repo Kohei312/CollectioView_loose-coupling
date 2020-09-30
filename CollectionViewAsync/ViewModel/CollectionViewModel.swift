@@ -18,17 +18,23 @@ protocol ViewModelInputPort:AnyObject{
 
 class CollectionViewModel:ModelOutputPort,ViewModelInputPort{
 
-    private var modelInputPort: ModelInputPort?
+    // 初期化するときは、レイヤーの外側から
+    private let modelInputPort: ModelInputPort
+    
+    // DIは、プロトコルに準拠する
     private var viewModelOutputPort: ViewModelOutputPort?
     
-    init(input:ModelInputPort, output:ViewModelOutputPort){
+    init(input:ModelInputPort){
         self.modelInputPort = input
-        self.viewModelOutputPort = output
     }
     
+    func inject(output:ViewModelOutputPort){
+        self.viewModelOutputPort = output
+    }
+
     // ViewModel → Modelへ伝達
     func callUpdateFromView(url: URL) {
-        modelInputPort?.startFetchData(url:url)
+        modelInputPort.startFetchData(url:url)
     }
     
     // Model → Viewへ、表示用データを返却

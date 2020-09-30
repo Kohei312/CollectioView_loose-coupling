@@ -22,12 +22,15 @@ protocol ModelInputPort{
 
 class CollectionModel:ModelInputPort,APIRepositoryOutput{
 
+    private let input:APIRepositoryInput?
     private weak var output:ModelOutputPort?
-    private weak var input:APIRepositoryInput?
     
-    init(output:ModelOutputPort,input:APIRepositoryInput){
-        self.output = output
+    init(input:APIRepositoryInput){
         self.input = input
+    }
+    
+    func inject(output:ModelOutputPort){
+        self.output = output
     }
      
     var storedCollectionData:[CollectionData] = []

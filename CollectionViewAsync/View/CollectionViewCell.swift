@@ -11,18 +11,18 @@ protocol CollectionViewCellProtocol{
     func didUpdateCellStatus()
 }
 
-class CollectionViewCell: UICollectionViewCell,ViewModelOutputPort,ModelInputPort {
+class CollectionViewCell: UICollectionViewCell,ViewModelOutputPort{
 
-    private var collectionViewModel:CollectionViewModel?
+//    private var collectionViewModel:CollectionViewModel?
     
     var delegate: CollectionViewCellProtocol?
     
-    // ViewModelへ処理を渡す
-    func startFetchData(url: URL) {
-        self.collectionViewModel?.callUpdateFromView(url: <#T##URL#>)
-    }
-    
-    
+//    // ViewModelへ処理を渡す
+//    func startFetchData(url: URL) {
+//        self.collectionViewModel?.callUpdateFromView(url: <#T##URL#>)
+//    }
+//    
+//    
     // ViewModelからデータを受け取る
     func viewModelDidUpdate(image: UIImage) {
         // イメージデータをUIへセット
@@ -30,5 +30,5 @@ class CollectionViewCell: UICollectionViewCell,ViewModelOutputPort,ModelInputPor
         // UI更新をコール
         delegate?.didUpdateCellStatus()
     }
-    
+//    
 }
