@@ -8,19 +8,22 @@
 import Foundation
 
 
-// ModelからAPIへ伝達する
+// MARK:- ModelからAPIRepositoryへ伝達する
 protocol APIRepositoryInput:AnyObject{
     func callAPI(from url:URL)
 }
 
+// MARK:- APIRepositoryからModelへ伝達する
 protocol APIRepositoryOutput:AnyObject{
     func didFetchData(_ data:Data)
 }
 
 class APIRepository:APIRepositoryInput{
 
+    // クラス初期化時はnil
     private weak var apiRepository:APIRepositoryOutput?
     
+    // クラス初期化後に、protocolを注入
     func inject(output:APIRepositoryOutput){
         self.apiRepository = output
     }

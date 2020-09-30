@@ -8,14 +8,17 @@
 import Foundation
 import UIKit
 
+// MARK:- ModelからViewControllerへ伝達する
 protocol ViewModelOutputPort:AnyObject{
     func viewModelDidUpdate(collectionData:CollectionData)
 }
 
+// MARK:- ViewControllerからModelへ伝達する
 protocol ViewModelInputPort:AnyObject{
     func callUpdateFromView(url:URL)
 }
 
+// MARK:- ModelとViewControllerの橋渡し
 class CollectionViewModel:ModelOutputPort,ViewModelInputPort{
 
     // 初期化するときは、レイヤーの外側から

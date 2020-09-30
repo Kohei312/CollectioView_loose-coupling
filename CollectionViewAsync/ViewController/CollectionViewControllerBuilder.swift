@@ -31,6 +31,9 @@ extension CollectionViewController:CollectionViewControllerBuilderProtocol{
         let presenter = CollectionViewModel(input: usecase)
 
         
+        /* 各クラスに、protocolを注入。
+        クラス内に定義した変数を初期化する */
+        
         repository.inject(output: usecase)
         presenter.inject(output: self)
         usecase.inject(output: presenter)

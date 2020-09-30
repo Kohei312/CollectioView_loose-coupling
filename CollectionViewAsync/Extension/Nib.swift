@@ -8,20 +8,20 @@
 import Foundation
 import UIKit
 
-// UINibの基底クラスを抽象化
+//MARK:-  UINibの基底クラスを抽象化
 protocol CellProtocol:class {}
 
-// extensionで変数を定義
+// MARK:- extensionで変数を定義
 extension CellProtocol{
     static var nibName:String{return String(describing: self)}
     static var identifier:String {return nibName}
 }
 
-// UICollectionViewCellを、UINibのプロトコルに準拠
+// MARK:- UICollectionViewCellを、UINibのプロトコルに準拠
 extension UICollectionViewCell:CellProtocol{}
 
-// UICollectionViewCellを汎用化し、引数にUICollectionViewCellが入ることを暗黙的に規定。
 
+// MARK:- UICollectionViewCellを汎用化し、引数にUICollectionViewCellが入ることを暗黙的に規定。
 extension UICollectionView{
     // UICollectionViewCellインスタンスに依存せず、Cellを登録できる
     func register<T:UICollectionViewCell>(_ cell:T.Type){

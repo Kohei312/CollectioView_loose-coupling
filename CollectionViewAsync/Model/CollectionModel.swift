@@ -8,27 +8,30 @@
 import Foundation
 
 
-// CollectionViewModelから、データを出力するprotocol
+// MARK:- CollectionViewModelから、データを出力するprotocol
 // このプロトコルは、どのクラスにも対応できることを証明 → AnyObject
 protocol ModelOutputPort:AnyObject{
     func modelDidUpdate(value:CollectionData)
 }
 
-// CollectionViewModelへ、データを入力するprotocol
+// MARK:- CollectionViewModelへ、データを入力するprotocol
 // 今回はRepository層でのデータ取得に連絡する
 protocol ModelInputPort{
     func startFetchData(url:URL)
 }
 
+// MARK:- ViewModelとRepositoryの橋渡し
 class CollectionModel:ModelInputPort,APIRepositoryOutput{
 
     private let input:APIRepositoryInput?
     private weak var output:ModelOutputPort?
     
+    // クラス初期化時に、APIRepositoryInputを初期化
     init(input:APIRepositoryInput){
         self.input = input
     }
     
+    // クラス初期化後に、ModelOutputPortを注入
     func inject(output:ModelOutputPort){
         self.output = output
     }

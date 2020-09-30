@@ -23,6 +23,7 @@
 		7C2EAC47251DE1CE00738F1B /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2EAC46251DE1CE00738F1B /* CollectionViewModel.swift */; };
 		7C2EAC4F251DE1E200738F1B /* APIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2EAC4E251DE1E200738F1B /* APIRepository.swift */; };
 		7C2EAC57251DE5C100738F1B /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2EAC56251DE5C100738F1B /* CollectionModel.swift */; };
+		7C58172025249CA40002C7A5 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C58171F25249CA40002C7A5 /* UIImage+extension.swift */; };
 		7C79FDCC2522170600F2FDFB /* CollectionViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C79FDCB2522170600F2FDFB /* CollectionViewControllerBuilder.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		7C2EAC46251DE1CE00738F1B /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		7C2EAC4E251DE1E200738F1B /* APIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRepository.swift; sourceTree = "<group>"; };
 		7C2EAC56251DE5C100738F1B /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
+		7C58171F25249CA40002C7A5 /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		7C79FDCB2522170600F2FDFB /* CollectionViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewControllerBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				7C2EAC19251DD08D00738F1B /* Nib.swift */,
+				7C58171F25249CA40002C7A5 /* UIImage+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				7C2EAC40251DE02000738F1B /* CollectionModelState.swift in Sources */,
 				7C2EAC1A251DD08D00738F1B /* Nib.swift in Sources */,
 				7C2EABD3251DCB6700738F1B /* AppDelegate.swift in Sources */,
+				7C58172025249CA40002C7A5 /* UIImage+extension.swift in Sources */,
 				7C2EAC57251DE5C100738F1B /* CollectionModel.swift in Sources */,
 				7C2EAC47251DE1CE00738F1B /* CollectionViewModel.swift in Sources */,
 				7C2EAC10251DD06600738F1B /* CollectionViewCell.swift in Sources */,
