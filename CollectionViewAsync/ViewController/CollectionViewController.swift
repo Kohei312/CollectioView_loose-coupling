@@ -8,31 +8,40 @@
 import UIKit
 
 
-class CollectionViewController: UIViewController,ViewModelInputPort{
-    
+class CollectionViewController: UIViewController,ViewModelOutputPort{
+
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-//    let builder = CollectionViewControllerBuilder()
+    private var viewModelIputPort:ViewModelInputPort?
+    private var dataCollections:[CollectionData] = []
+    
+    func inject(input:ViewModelInputPort){
+        self.viewModelIputPort = input
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // ViewModelへVCで初期化したものを注入
-        CollectionViewControllerBuilder.build()
+        self.build()
         // CollectionViewCellを登録
         collectionView.cell.delegate = self
     }
-    
-    func callUpdateFromView(url:URL){
         
-    }
+//    // UI更新をコール
+//    func didUpdateCellStatus(){
+//    }
+
     
-    // UI更新をコール
-    func didUpdateCellStatus(){
+    func viewModelDidUpdate(collectionData: CollectionData) {
+        // UI描画に必要な情報をセット
+        self.dataCollections.append(collectionData)
+        // イメージをセット
+        self.collectionView.cell.updateImage()
         self.collectionView.reloadData()
     }
-
+    
 }
 
 

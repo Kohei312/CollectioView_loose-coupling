@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol ViewModelOutputPort:AnyObject{
-    func viewModelDidUpdate(image:UIImage)
+    func viewModelDidUpdate(collectionData:CollectionData)
 }
 
 protocol ViewModelInputPort:AnyObject{
@@ -22,7 +22,7 @@ class CollectionViewModel:ModelOutputPort,ViewModelInputPort{
     private let modelInputPort: ModelInputPort
     
     // DIは、プロトコルに準拠する
-    private var viewModelOutputPort: ViewModelOutputPort?
+    private weak var viewModelOutputPort: ViewModelOutputPort?
     
     init(input:ModelInputPort){
         self.modelInputPort = input
@@ -40,7 +40,7 @@ class CollectionViewModel:ModelOutputPort,ViewModelInputPort{
     // Model → Viewへ、表示用データを返却
     func modelDidUpdate(value: CollectionData) {
         // modelの変化を、View側へ伝達する
-        viewModelOutputPort?.viewModelDidUpdate(image:value.image)
+        viewModelOutputPort?.viewModelDidUpdate(collectionData:value)
     }
     
     

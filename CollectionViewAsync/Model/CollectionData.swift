@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import UIKit
+
 
 struct CollectionData{
-    let image:UIImage
+    let imageData:Data
 }

@@ -10,29 +10,29 @@ import UIKit
 
 protocol CollectionViewControllerBuilderProtocol{
     
-    static func build()
+    func build()
 }
 
-struct CollectionViewControllerBuilder:CollectionViewControllerBuilderProtocol{
+extension CollectionViewController:CollectionViewControllerBuilderProtocol{
 
     
-    static func build()-> CollectionViewController{
+    func build(){
         // VC
-        let viewController = CollectionViewController()
-//            viewController.collectionView.register(CollectionViewCell.self)
-//
+        let viewController = self
+            viewController.collectionView.register(CollectionViewCell.self)
+
         // View
-        let dataSource = CollectionViewDataSource(input: <#ViewModelInputPort#>)
+        let dataSource = CollectionViewDataSource()
         // repository
-        let repository = APIRepository(output: <#T##APIRepositoryOutput#>)
-        
+        let repository = APIRepository()
         // presenter
-        let presenter = CollectionViewModel(input: <#T##ModelInputPort#>, output: <#T##ViewModelOutputPort#>)
+        let presenter = CollectionViewModel(input: viewController as! ModelInputPort)
         // usecase
-        let usecase = CollectionModel(output: <#T##ModelOutputPort#>, input: <#T##APIRepositoryInput#>)
+        let usecase = CollectionModel(input: repository)
         
-        return viewController
+        repository.inject(output: usecase)
+        presenter.inject(output: viewController )
+        usecase.inject(output: presenter)
+        
     }
-    
-    
 }

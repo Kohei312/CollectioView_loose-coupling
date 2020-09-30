@@ -33,7 +33,7 @@ class CollectionViewDataSource:NSObject,UICollectionViewDelegate,UICollectionVie
         let cell  = collectionView.dequeueReusableCell(CollectionViewCell.self,indexPath: indexPath)
 
         // データ取得処理を呼び出す
-        self.callUpdateFromView(url: <#T##URL#>)
+  
         
         // 返却されたデータをCellプロパティに格納する
         

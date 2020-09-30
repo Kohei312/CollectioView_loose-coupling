@@ -21,10 +21,6 @@ class APIRepository:APIRepositoryInput{
 
     private weak var apiRepository:APIRepositoryOutput?
     
-//    init(output:APIRepositoryOutput){
-//        self.apiRepository = output
-//    }
-    
     func inject(output:APIRepositoryOutput){
         self.apiRepository = output
     }

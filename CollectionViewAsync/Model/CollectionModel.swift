@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+
 
 // CollectionViewModelから、データを出力するprotocol
 // このプロトコルは、どのクラスにも対応できることを証明 → AnyObject
@@ -38,8 +38,7 @@ class CollectionModel:ModelInputPort,APIRepositoryOutput{
     // repositoryからデータ返却
     func didFetchData(_ data: Data) {
         // データをCollectionData型に成形・格納
-        guard let image = UIImage(data:data) else {return}
-        let collectionData = CollectionData(image: image)
+        let collectionData = CollectionData(imageData: data)
         
         // 取得したデータを取得する
         self.storedCollectionData.append(collectionData)
