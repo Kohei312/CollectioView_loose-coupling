@@ -18,21 +18,23 @@ extension CollectionViewController:CollectionViewControllerBuilderProtocol{
     
     func build(){
         // VC
-        let viewController = self
-            viewController.collectionView.register(CollectionViewCell.self)
+        self.collectionView.register(CollectionViewCell.self)
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        
 
-        // View
-        let dataSource = CollectionViewDataSource()
         // repository
         let repository = APIRepository()
-        // presenter
-        let presenter = CollectionViewModel(input: viewController as! ModelInputPort)
         // usecase
         let usecase = CollectionModel(input: repository)
+        // presenter
+        let presenter = CollectionViewModel(input: usecase)
+
         
         repository.inject(output: usecase)
-        presenter.inject(output: viewController )
+        presenter.inject(output: self)
         usecase.inject(output: presenter)
+        self.inject(input: presenter)
         
     }
 }

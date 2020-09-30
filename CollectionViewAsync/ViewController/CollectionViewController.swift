@@ -16,6 +16,8 @@ class CollectionViewController: UIViewController,ViewModelOutputPort{
     private var viewModelIputPort:ViewModelInputPort?
     private var dataCollections:[CollectionData] = []
     
+    
+    
     func inject(input:ViewModelInputPort){
         self.viewModelIputPort = input
     }
@@ -25,24 +27,60 @@ class CollectionViewController: UIViewController,ViewModelOutputPort{
         
         // ViewModelへVCで初期化したものを注入
         self.build()
-        // CollectionViewCellを登録
-        collectionView.cell.delegate = self
-    }
-        
-//    // UI更新をコール
-//    func didUpdateCellStatus(){
-//    }
 
+    }
     
+        
+
     func viewModelDidUpdate(collectionData: CollectionData) {
         // UI描画に必要な情報をセット
         self.dataCollections.append(collectionData)
         // イメージをセット
-        self.collectionView.cell.updateImage()
-        self.collectionView.reloadData()
+        DispatchQueue.main.async{
+            self.collectionView.reloadData()
+        }
     }
+ 
+    
     
 }
+
+extension CollectionViewController: UICollectionViewDelegate,UICollectionViewDataSource{
+    // 2
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        var count = 0
+        
+        if self.dataCollections.count == 0{
+            count = 1
+        } else  {
+            count = self.dataCollections.count
+        }
+        
+        return count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        // cellは、Modelと結びつく形で管理
+        let cell  = collectionView.dequeueReusableCell(CollectionViewCell.self,indexPath: indexPath)
+        
+        if self.dataCollections.count > 0{
+            cell.configure(self.dataCollections[indexPath.row])
+        } else {
+            
+            // テスト用URLを入力
+            let url = URL(string: "")!
+            self.viewModelIputPort?.callUpdateFromView(url:url)
+        }
+        // 返却されたデータをCellプロパティに格納する
+        return cell
+    }
+
+    
+}
+
 
 
 
