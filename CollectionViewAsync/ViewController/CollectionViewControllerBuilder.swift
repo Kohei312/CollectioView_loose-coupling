@@ -22,9 +22,10 @@ extension CollectionViewController:CollectionViewControllerBuilderProtocol{
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
-
+        // WebClient
+        let client = WebClient()
         // repository
-        let repository = APIRepository()
+        let repository = APIRepository(input:client)
         // usecase
         let usecase = CollectionModel(input: repository)
         // presenter

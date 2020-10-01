@@ -11,7 +11,7 @@ import Foundation
 // MARK:- CollectionViewModelから、データを出力するprotocol
 // このプロトコルは、どのクラスにも対応できることを証明 → AnyObject
 protocol ModelOutputPort:AnyObject{
-    func modelDidUpdate(value:CollectionData)
+    func modelDidUpdate(value:CollectionModelData)
 }
 
 // MARK:- CollectionViewModelへ、データを入力するprotocol
@@ -36,7 +36,7 @@ class CollectionModel:ModelInputPort,APIRepositoryOutput{
         self.output = output
     }
      
-    var storedCollectionData:[CollectionData] = []
+//    var storedCollectionData:[CollectionData] = []
     
     // repositoryからデータ返却
     func didFetchData(_ data: Data) {
@@ -44,10 +44,10 @@ class CollectionModel:ModelInputPort,APIRepositoryOutput{
         let collectionData = CollectionData(imageData: data)
         
         // 取得したデータを取得する
-        self.storedCollectionData.append(collectionData)
+//        self.storedCollectionData.append(collectionData)
         
         // -> 非同期でデータ受信後に、outputメソッドをコール
-        output?.modelDidUpdate(value: collectionData)
+        output?.modelDidUpdate(value: CollectionModelData(data: [collectionData]))
     }
     
     func startFetchData(url: URL) {

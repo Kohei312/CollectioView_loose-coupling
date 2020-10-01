@@ -10,7 +10,7 @@ import UIKit
 
 // MARK:- ModelからViewControllerへ伝達する
 protocol ViewModelOutputPort:AnyObject{
-    func viewModelDidUpdate(collectionData:CollectionData)
+    func viewModelDidUpdate(collectionData:CollectionModelData)
 }
 
 // MARK:- ViewControllerからModelへ伝達する
@@ -41,7 +41,7 @@ class CollectionViewModel:ModelOutputPort,ViewModelInputPort{
     }
     
     // Model → Viewへ、表示用データを返却
-    func modelDidUpdate(value: CollectionData) {
+    func modelDidUpdate(value: CollectionModelData) {
         // modelの変化を、View側へ伝達する
         viewModelOutputPort?.viewModelDidUpdate(collectionData:value)
     }

@@ -17,7 +17,6 @@ class CollectionViewController: UIViewController,ViewModelOutputPort{
     private var dataCollections:[CollectionData] = []
     
     
-    
     func inject(input:ViewModelInputPort){
         self.viewModelIputPort = input
     }
@@ -32,9 +31,10 @@ class CollectionViewController: UIViewController,ViewModelOutputPort{
     
         
 
-    func viewModelDidUpdate(collectionData: CollectionData) {
+    func viewModelDidUpdate(collectionData: CollectionModelData) {
         // UI描画に必要な情報をセット
-        self.dataCollections.append(collectionData)
+        self.dataCollections = collectionData.data
+//        self.dataCollections.append(collectionData)
         // イメージをセット
         DispatchQueue.main.async{
             self.collectionView.reloadData()
@@ -71,7 +71,7 @@ extension CollectionViewController: UICollectionViewDelegate,UICollectionViewDat
         } else {
             
             // テスト用URLを入力
-            let url = URL(string: "")!
+            let url = ImageURL.url
             self.viewModelIputPort?.callUpdateFromView(url:url)
         }
         // 返却されたデータをCellプロパティに格納する

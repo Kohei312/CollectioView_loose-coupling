@@ -22,6 +22,11 @@ class APIRepository:APIRepositoryInput{
 
     // クラス初期化時はnil
     private weak var apiRepository:APIRepositoryOutput?
+    private let webClient:WebClient
+    
+    init(input:WebClient){
+        self.webClient = input
+    }
     
     // クラス初期化後に、protocolを注入
     func inject(output:APIRepositoryOutput){
@@ -29,20 +34,23 @@ class APIRepository:APIRepositoryInput{
     }
     
     func callAPI(from url: URL) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            if let err = error{
-                print("通信エラー :",err)
-            }
-            
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data
-                else { return }
-            
+        webClient.callAPI(from: url) { data in
             self.apiRepository?.didFetchData(data)
-            
-        }.resume()
+        }
+//        URLSession.shared.dataTask(with: url) { data, response, error in
+//
+//            if let err = error{
+//                print("通信エラー :",err)
+//            }
+//
+//            guard
+//                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+//                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+//                let data = data
+//                else { return }
+//
+//            self.apiRepository?.didFetchData(data)
+//
+//        }.resume()
     }
 }
