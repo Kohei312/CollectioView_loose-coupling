@@ -14,8 +14,9 @@ class WebClientTests: XCTestCase,WebClientProtocol{
         let exp = XCTestExpectation(description: "complete Async")
         DispatchQueue.global().async {
             sleep(3)
-            XCTAssertNotNil(true, "gooooood")
+            XCTAssertNotNil(true)
             exp.fulfill()
+            completion(Data())
         }
         wait(for: [exp], timeout: 5)
     }

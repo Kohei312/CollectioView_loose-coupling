@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "3DC40C4F-7499-4E2E-9800-9F6D67445718",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CollectionViewAsync.xcodeproj",
+        "identifier" : "7C2EABE4251DCB6B00738F1B",
+        "name" : "CollectionViewAsyncTests"
+      }
+    }
+  ],
+  "version" : 1
+}

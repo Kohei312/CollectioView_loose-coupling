@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // MARK:- ModelからAPIRepositoryへ伝達する
 protocol APIRepositoryInput:AnyObject{
     func callAPI(from url:URL)
